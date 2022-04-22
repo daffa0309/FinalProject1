@@ -1,6 +1,5 @@
 {
   "name": "newsapp",
-  "homepage": "https://jack0781.github.io/newsapp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
