@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { bookmarkItem, unBookmarkItem } from '../actions/bookmarks';
 import { FaRegBookmark, FaBookmark } from 'react-icons/fa';
 import NewsDefaultImage from './news-default-image.jpg';
-import { useHistory } from 'react-router-dom';
 
 const NewsItem = ({
   item,
@@ -17,9 +16,8 @@ const NewsItem = ({
   bookmarkItems
 }) => {
 
-  const history = useHistory()
   const DetailsPage = () => {
-    history.push(`/Home/${item.publishedAt}`)
+    window.open(`${item.url}`)
   }
   const isBookmark = item => {
     if (bookmarkItems !== null) {
@@ -66,7 +64,7 @@ const NewsItem = ({
             </Truncate>
           </Card.Text>
           <Button bg="primary" onClick={DetailsPage}>
-            Go to Page
+            News Page
           </Button>
           {isBookmark(item) ? (
             <FaBookmark

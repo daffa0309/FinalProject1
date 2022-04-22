@@ -1,15 +1,15 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import CategorySourceSearchForm from '../components/CategorySourceSearchForm';
-import { setTopNews, clearTopNews } from '../actions/news';
-import NewsList from '../components/NewsList';
-import TopNav from '../layout/TopNav'
-import { connect } from 'react-redux';
+import React, { Fragment, useState, useEffect } from "react";
+import CategorySourceSearchForm from "../components/CategorySourceSearchForm";
+import { setTopNews, clearTopNews } from "../actions/news";
+import NewsList from "../components/NewsList";
+import TopNav from "../layout/TopNav";
+import { connect } from "react-redux";
 
 const Home = ({ setTopNews, news, clearTopNews }) => {
   const [page, setPage] = useState(1);
-  const [categorySourceUrl, setCategorySourceUrl] = useState('');
+  const [categorySourceUrl, setCategorySourceUrl] = useState("");
 
-  const handleCategorySourceSearch = categorySourceUrl => {
+  const handleCategorySourceSearch = (categorySourceUrl) => {
     setPage(1);
     setCategorySourceUrl(categorySourceUrl);
   };
@@ -32,7 +32,7 @@ const Home = ({ setTopNews, news, clearTopNews }) => {
     <Fragment>
       <TopNav />
       <CategorySourceSearchForm
-        onCategorySourceSearch={categorySourceUrl => {
+        onCategorySourceSearch={(categorySourceUrl) => {
           handleCategorySourceSearch(categorySourceUrl);
         }}
       />
@@ -47,11 +47,8 @@ const Home = ({ setTopNews, news, clearTopNews }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  news: state.news
+const mapStateToProps = (state) => ({
+  news: state.news,
 });
 
-export default connect(
-  mapStateToProps,
-  { setTopNews, clearTopNews }
-)(Home);
+export default connect(mapStateToProps, { setTopNews, clearTopNews })(Home);
