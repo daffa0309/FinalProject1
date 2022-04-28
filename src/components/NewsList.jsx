@@ -36,9 +36,7 @@ const NewsList = ({ newsItems, loading, newsItemsTotal, theme, loadMore }) => {
       {newsItems.length < newsItemsTotal && !loading && (
         <Row className='justify-content-md-center py-2'>
           <Col xs={12} sm={12} className='text-center'>
-            <Button className='py-2' variant={theme} onClick={loadMore}>
-              Load More
-            </Button>
+         
           </Col>
         </Row>
       )}

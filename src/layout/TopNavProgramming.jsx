@@ -4,10 +4,10 @@ import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import CategorySourceSearchForm from "../components/CategorySourceSearchForm";
 import { clearTopNews, setTopNews } from "../actions/news";
+import ProgrammingDataSource from "../components/ProgrammingDataSource";
 
-const TopNav = ({ setTopNews, news, clearTopNews }) => {
+const TopNavProgramming = ({ setTopNews, news, clearTopNews }) => {
   const [page, setPage] = useState(1);
   const [categorySourceUrl, setCategorySourceUrl] = useState("");
   const handleCategorySourceSearch = (categorySourceUrl) => {
@@ -50,7 +50,7 @@ const TopNav = ({ setTopNews, news, clearTopNews }) => {
       </Container>
       <Container>
         
-      <CategorySourceSearchForm
+      <ProgrammingDataSource
         onCategorySourceSearch={(categorySourceUrl) => {
           handleCategorySourceSearch(categorySourceUrl);
         }}
@@ -64,4 +64,4 @@ const mapStateToProps = (state) => ({
   news: state.news,
 });
 
-export default connect(mapStateToProps, { setTopNews, clearTopNews })(TopNav);
+export default connect(mapStateToProps, { setTopNews, clearTopNews })(TopNavProgramming);

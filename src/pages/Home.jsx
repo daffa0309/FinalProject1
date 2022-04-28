@@ -8,19 +8,25 @@ import { connect } from "react-redux";
 const Home = ({ setTopNews, news, clearTopNews }) => {
   const [page, setPage] = useState(1);
   const [categorySourceUrl, setCategorySourceUrl] = useState("");
+  const [type, setType] = useState("category");
+  const [country, setCountry] = useState("id");
+  const [category, setCategory] = useState("");
+  const [searchQuery, setSearchQuery] = useState("covid");
 
   const handleCategorySourceSearch = (categorySourceUrl) => {
     setPage(1);
     setCategorySourceUrl(categorySourceUrl);
   };
-
   const handleLoadMore = () => {
     setPage(page + 1);
+    handleCategorySourceSearch(categorySourceUrl);
+
   };
 
   useEffect(() => {
+
     if (categorySourceUrl) {
-      const url = `${categorySourceUrl}`;
+      const url = `top-headlines?country=${country}&category=${category}&sources=&q=${searchQuery}`;
       setTopNews(url, page);
     }
     return () => {
@@ -31,17 +37,12 @@ const Home = ({ setTopNews, news, clearTopNews }) => {
   return (
     <Fragment>
       <TopNav />
-      <CategorySourceSearchForm
-        onCategorySourceSearch={(categorySourceUrl) => {
-          handleCategorySourceSearch(categorySourceUrl);
-        }}
-      />
+
       <NewsList
         newsItemsTotal={news.newsItemsTotal}
         loading={news.newsLoading}
         newsItems={news.newsItems}
         theme={news.theme}
-        loadMore={() => handleLoadMore()}
       />
     </Fragment>
   );
